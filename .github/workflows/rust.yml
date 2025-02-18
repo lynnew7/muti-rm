@@ -21,14 +21,14 @@ jobs:
           ~/.cargo/registry/cache/
           ~/.cargo/git/db/
           target/
-        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        key: ${{ runner.os }}-cargo-x86${{ hashFiles('**/Cargo.lock') }}
     - uses: actions/checkout@v4
     - name: Build
       run: cargo build --verbose -r
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.0
       with:
-        name: artifact
+        name: muti-rm-x86
         path: target/release/muti-rm
   build-linux-arm:
     runs-on: ubuntu-24.04-arm
@@ -41,12 +41,12 @@ jobs:
           ~/.cargo/registry/cache/
           ~/.cargo/git/db/
           target/
-        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        key: ${{ runner.os }}-cargo-arm${{ hashFiles('**/Cargo.lock') }}
     - uses: actions/checkout@v4
     - name: Build
       run: cargo build --verbose -r
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.0
       with:
-        name: artifact
+        name: muti-rm-arm
         path: target/release/muti-rm
